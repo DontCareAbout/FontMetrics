@@ -62,4 +62,8 @@ public class FontMetrics {
 
 		return true;
 	}
+
+	public static FontMetrics get(Font font) {
+		return new MainLogic().getMetrics(font);
+	}
 }
