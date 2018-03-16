@@ -19,7 +19,7 @@ class MainLogic {
 		padding = font.size * 0.5;
 		canvas.setCoordinateSpaceWidth(font.size * 2);
 		canvas.setCoordinateSpaceHeight((int)(font.size * 2 + padding));
-		context.setFont(font.weight + " " + font.size + "px " + font.family);
+		context.setFont(font.toString());
 		context.setTextBaseline(TextBaseline.TOP);
 		context.setTextAlign(TextAlign.CENTER);
 
