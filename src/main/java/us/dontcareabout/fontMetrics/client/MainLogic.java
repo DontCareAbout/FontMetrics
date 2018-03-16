@@ -12,10 +12,9 @@ class MainLogic {
 	private static final Canvas canvas = Canvas.createIfSupported();
 	private static final Context2d context = canvas.getContext2d();
 
-	private HashMap<MetricsField, String> testString = MetricsField.defaultTestText();
 	private double padding;
 
-	FontMetrics getMetrics(Font font) {
+	FontMetrics getMetrics(Font font, HashMap<MetricsField, String> testTexts) {
 		padding = font.size * 0.5;
 		canvas.setCoordinateSpaceWidth(font.size * 2);
 		canvas.setCoordinateSpaceHeight((int)(font.size * 2 + padding));
@@ -26,7 +25,10 @@ class MainLogic {
 		FontMetrics result = new FontMetrics();
 
 		for (MetricsField type : MetricsField.values()) {
-			String text = testString.get(type);
+			String text = testTexts.get(type);
+
+			if (text == null) { text = type.text; }
+
 			result.setValue(
 				type,
 				type.measureTop ? measureTop(text) : measureBottom(text)
