@@ -8,25 +8,27 @@ import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.canvas.dom.client.Context2d.TextBaseline;
 
-public class MainLogic {
-	private final Canvas canvas = Canvas.createIfSupported();
-	private final Context2d context = canvas.getContext2d();
+class MainLogic {
+	private static final Canvas canvas = Canvas.createIfSupported();
+	private static final Context2d context = canvas.getContext2d();
 
-	private HashMap<MetricsField, String> testString = MetricsField.defaultTestText();
 	private double padding;
 
-	public FontMetrics getMetrics(Font font) {
+	FontMetrics getMetrics(Font font, HashMap<MetricsField, String> testTexts) {
 		padding = font.size * 0.5;
 		canvas.setCoordinateSpaceWidth(font.size * 2);
 		canvas.setCoordinateSpaceHeight((int)(font.size * 2 + padding));
-		context.setFont(font.weight + " " + font.size + "px " + font.family);
+		context.setFont(font.toString());
 		context.setTextBaseline(TextBaseline.TOP);
 		context.setTextAlign(TextAlign.CENTER);
 
 		FontMetrics result = new FontMetrics();
 
 		for (MetricsField type : MetricsField.values()) {
-			String text = testString.get(type);
+			String text = testTexts.get(type);
+
+			if (text == null) { text = type.text; }
+
 			result.setValue(
 				type,
 				type.measureTop ? measureTop(text) : measureBottom(text)

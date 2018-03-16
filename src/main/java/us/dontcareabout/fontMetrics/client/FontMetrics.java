@@ -62,4 +62,12 @@ public class FontMetrics {
 
 		return true;
 	}
+
+	public static FontMetrics get(Font font) {
+		return new MainLogic().getMetrics(font, MetricsField.defaultTestText());
+	}
+
+	public static FontMetrics get(Font font, HashMap<MetricsField, String> testTexts) {
+		return new MainLogic().getMetrics(font, testTexts);
+	}
 }
