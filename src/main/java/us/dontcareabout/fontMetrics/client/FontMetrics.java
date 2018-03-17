@@ -2,7 +2,6 @@ package us.dontcareabout.fontMetrics.client;
 
 import java.util.HashMap;
 
-//TODO bottom
 public class FontMetrics {
 	private final HashMap<MetricsField, Double> values = new HashMap<>();
 
@@ -12,6 +11,10 @@ public class FontMetrics {
 
 	public double getValue(MetricsField type) {
 		return values.get(type);
+	}
+
+	public double getBottom() {
+		return values.get(MetricsField.bottom);
 	}
 
 	public double getCapHeight() {

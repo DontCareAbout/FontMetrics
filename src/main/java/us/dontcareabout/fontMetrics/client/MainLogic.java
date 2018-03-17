@@ -29,6 +29,11 @@ class MainLogic {
 
 			if (text == null) { text = type.text; }
 
+			if (type == MetricsField.bottom) {
+				result.setValue(type, computeLineHeight());
+				continue;
+			}
+
 			result.setValue(
 				type,
 				type.measureTop ? measureTop(text) : measureBottom(text)
@@ -64,4 +69,18 @@ class MainLogic {
 			PixelUtil.getLastIndex(getPixels(text)) * 1.0 / canvas.getCoordinateSpaceWidth()
 		) - padding;
 	};
+
+	//==== bottom 專用 ====
+	private double computeLineHeight() {
+		setAlignment(true);
+		double gutter = canvas.getCoordinateSpaceHeight() - measureBottom(MetricsField.bottom.text);
+		setAlignment(false);
+		return measureBottom(MetricsField.bottom.text) + gutter;
+	}
+
+	private void setAlignment(boolean isBottom) {
+		context.setTransform(1, 0, 0, 1, 0, isBottom ? canvas.getCoordinateSpaceHeight() : 0);
+		context.setTextBaseline(isBottom ? TextBaseline.BOTTOM : TextBaseline.TOP);
+	}
+	// ======== //
 }

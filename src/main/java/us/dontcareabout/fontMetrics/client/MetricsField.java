@@ -3,6 +3,7 @@ package us.dontcareabout.fontMetrics.client;
 import java.util.HashMap;
 
 public enum MetricsField {
+	bottom("A"),	//bottom 的計算比較特別，給不給 isTop 都沒差
 	capHeight("S", true),
 	baseline("n"),
 	xHeight("x", true),
