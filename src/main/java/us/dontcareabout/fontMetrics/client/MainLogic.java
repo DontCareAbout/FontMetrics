@@ -15,6 +15,10 @@ class MainLogic {
 	private double padding;
 
 	FontMetrics getMetrics(Font font, HashMap<MetricsField, String> testTexts) {
+		if (canvas == null) {
+			throw new UnsupportedOperationException("Browser is not supported.");
+		}
+
 		padding = font.size * 0.5;
 		canvas.setCoordinateSpaceWidth(font.size * 2);
 		canvas.setCoordinateSpaceHeight((int)(font.size * 2 + padding));
