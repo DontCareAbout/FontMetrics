@@ -1,6 +1,9 @@
 FontMetrics for GWT  \囧/
 =========================
 
+> ## [Click here for English version.](README_en.md) ##
+
+
 這是用純 GWT 重刻 [FontMetrics]、跟原作有 87% 相似的版本 :dancer:
 
 [FontMetrics]: https://github.com/soulwire/FontMetrics
